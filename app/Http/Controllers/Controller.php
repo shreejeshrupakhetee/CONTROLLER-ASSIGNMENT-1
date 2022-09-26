@@ -11,3 +11,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
+
+public function __construct() {
+    $this->middleware('auth');
+    $this->middleware('admin')->only('index');
+    $this->middleware('manager')->except('destroy');
+}
